@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+	<title>Display Users</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css' )}}">
+ </head>
+ <body>
+	
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+					<div class="table">
+
+						<div class="row header" id="row-header">
+							<div class="cell">
+								ID
+							</div>
+							<div class="cell">
+								Name
+							</div>
+							<div class="cell">
+								Mask
+							</div>
+							<div class="cell">
+								Mask Probability
+							</div>
+							<div class="cell">
+								Face Probability
+							</div>
+							<div class="cell">
+								Capture
+							</div>
+							<div class="cell">
+								Captured at
+							</div>
+						</div>
+						{% for record in records %}
+						<div class=row>
+							<div class="cell" data-title="ID">{{ record[0] }}</div>
+							<div class="cell" data-title="Name">{{ record[1] }}</div>
+							<div class="cell" data-title="Mask">{{ record[2] }}</div>
+							<div class="cell" data-title="Mask Probability">{{ '%0.2f' | format(record[3]|float) }}%</div>
+							<div class="cell" data-title="Face Probability">{{ '%0.2f' | format(record[4]|float) }}%</div>
+							<div class="cell" data-title="Capture">
+								<img src="{{ './static/screenshots/capture-%s.jpg' | format(record[5]) }}" alt="Trulli" width="100" height="100">
+							</div>
+							<div class="cell" data-title="Captured at">{{ record[6] }}</div>
+						</div>
+						{% endfor %}
+					</div>
+			</div>
+		</div>
+	</div>
+ </body>
+</html>
